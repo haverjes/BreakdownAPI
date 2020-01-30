@@ -6,20 +6,26 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createEntry**](DefaultApi.md#createEntry) | **POST** /dbtest | 
 [**getTestData**](DefaultApi.md#getTestData) | **GET** /dbtest | Your GET endpoint
+[**putDbtest**](DefaultApi.md#putDbtest) | **PUT** /dbtest | 
 
-<a name="createEntry"></a>
-# **createEntry**
-> createEntry()
+
+
+## createEntry
+
+> createEntry(opts)
 
 
 
 ### Example
+
 ```javascript
 import TestApi from 'test_api';
 
 let apiInstance = new TestApi.DefaultApi();
-
-apiInstance.createEntry(, (error, data, response) => {
+let opts = {
+  'testData': new TestApi.TestData() // TestData | 
+};
+apiInstance.createEntry(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -30,9 +36,10 @@ apiInstance.createEntry(, (error, data, response) => {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**TestData**](TestData.md)|  | [optional] 
+ **testData** | [**TestData**](TestData.md)|  | [optional] 
 
 ### Return type
 
@@ -44,16 +51,18 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: Not defined
+- **Content-Type**: application/json
+- **Accept**: Not defined
 
-<a name="getTestData"></a>
-# **getTestData**
-> TestData getTestData()
+
+## getTestData
+
+> Array getTestData()
 
 Your GET endpoint
 
 ### Example
+
 ```javascript
 import TestApi from 'test_api';
 
@@ -68,11 +77,12 @@ apiInstance.getTestData((error, data, response) => {
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**TestData**](TestData.md)
+**Array**
 
 ### Authorization
 
@@ -80,6 +90,51 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## putDbtest
+
+> putDbtest(opts)
+
+
+
+### Example
+
+```javascript
+import TestApi from 'test_api';
+
+let apiInstance = new TestApi.DefaultApi();
+let opts = {
+  'testData': new TestApi.TestData() // TestData | 
+};
+apiInstance.putDbtest(opts, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **testData** | [**TestData**](TestData.md)|  | [optional] 
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
 

@@ -1,31 +1,30 @@
-# TestApi.DefaultApi
+# BreakDownApi.DefaultApi
 
-All URIs are relative to *http://localhost:5001*
+All URIs are relative to *https://virtserver.swaggerhub.com/Capstone-group-proje/BrokeDown/1.0.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createEntry**](DefaultApi.md#createEntry) | **POST** /dbtest | 
-[**getTestData**](DefaultApi.md#getTestData) | **GET** /dbtest | Your GET endpoint
-[**putDbtest**](DefaultApi.md#putDbtest) | **PUT** /dbtest | 
+[**createUser**](DefaultApi.md#createUser) | **POST** /users | 
+[**getUserTickets**](DefaultApi.md#getUserTickets) | **GET** /users/{userID}/tickets | Get tickets for user
+[**getUsers**](DefaultApi.md#getUsers) | **GET** /users | Query Users
+[**getUsersUserID**](DefaultApi.md#getUsersUserID) | **GET** /users/{userID} | Get specific user
+[**updateUser**](DefaultApi.md#updateUser) | **PUT** /users/{userID} | 
+
+<a name="createUser"></a>
+# **createUser**
+> createUser()
 
 
 
-## createEntry
-
-> createEntry(opts)
-
-
+Create a new user
 
 ### Example
-
 ```javascript
-import TestApi from 'test_api';
+import BreakDownApi from 'break_down_api';
 
-let apiInstance = new TestApi.DefaultApi();
-let opts = {
-  'testData': new TestApi.TestData() // TestData | 
-};
-apiInstance.createEntry(opts, (error, data, response) => {
+let apiInstance = new BreakDownApi.DefaultApi();
+
+apiInstance.createUser(, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -36,10 +35,9 @@ apiInstance.createEntry(opts, (error, data, response) => {
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **testData** | [**TestData**](TestData.md)|  | [optional] 
+ **body** | [**AppUser**](AppUser.md)|  | [optional] 
 
 ### Return type
 
@@ -51,23 +49,25 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
 
+<a name="getUserTickets"></a>
+# **getUserTickets**
+> [ServiceTicket] getUserTickets(userID)
 
-## getTestData
+Get tickets for user
 
-> Array getTestData()
-
-Your GET endpoint
+Return tickets related to a specific user.
 
 ### Example
-
 ```javascript
-import TestApi from 'test_api';
+import BreakDownApi from 'break_down_api';
 
-let apiInstance = new TestApi.DefaultApi();
-apiInstance.getTestData((error, data, response) => {
+let apiInstance = new BreakDownApi.DefaultApi();
+let userID = "userID_example"; // String | 
+
+apiInstance.getUserTickets(userID, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -78,11 +78,13 @@ apiInstance.getTestData((error, data, response) => {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userID** | **String**|  | 
 
 ### Return type
 
-**Array**
+[**[ServiceTicket]**](ServiceTicket.md)
 
 ### Authorization
 
@@ -90,26 +92,102 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
+<a name="getUsers"></a>
+# **getUsers**
+> [AppUser] getUsers()
 
-## putDbtest
-
-> putDbtest(opts)
-
-
+Query Users
 
 ### Example
-
 ```javascript
-import TestApi from 'test_api';
+import BreakDownApi from 'break_down_api';
 
-let apiInstance = new TestApi.DefaultApi();
-let opts = {
-  'testData': new TestApi.TestData() // TestData | 
-};
-apiInstance.putDbtest(opts, (error, data, response) => {
+let apiInstance = new BreakDownApi.DefaultApi();
+apiInstance.getUsers((error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**[AppUser]**](AppUser.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="getUsersUserID"></a>
+# **getUsersUserID**
+> AppUser getUsersUserID(userID)
+
+Get specific user
+
+### Example
+```javascript
+import BreakDownApi from 'break_down_api';
+
+let apiInstance = new BreakDownApi.DefaultApi();
+let userID = "userID_example"; // String | 
+
+apiInstance.getUsersUserID(userID, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userID** | **String**|  | 
+
+### Return type
+
+[**AppUser**](AppUser.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="updateUser"></a>
+# **updateUser**
+> updateUser(userID)
+
+
+
+Update part of a user&#x27;s records
+
+### Example
+```javascript
+import BreakDownApi from 'break_down_api';
+
+let apiInstance = new BreakDownApi.DefaultApi();
+let userID = "userID_example"; // String | 
+
+apiInstance.updateUser(userID, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -120,10 +198,10 @@ apiInstance.putDbtest(opts, (error, data, response) => {
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **testData** | [**TestData**](TestData.md)|  | [optional] 
+ **userID** | **String**|  | 
+ **body** | [**AppUser**](AppUser.md)|  | [optional] 
 
 ### Return type
 
@@ -135,6 +213,6 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
 

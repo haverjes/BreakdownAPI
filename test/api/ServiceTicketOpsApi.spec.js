@@ -27,7 +27,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new BreakDownApi.DefaultApi();
+    instance = new BreakDownApi.ServiceTicketOpsApi();
   });
 
   var getProperty = function(object, getter, property) {
@@ -46,51 +46,31 @@
       object[property] = value;
   }
 
-  describe('DefaultApi', function() {
-    describe('createUser', function() {
-      it('should call createUser successfully', function(done) {
-        //uncomment below and update the code to test createUser
-        //instance.createUser(function(error) {
+  describe('ServiceTicketOpsApi', function() {
+    describe('addTicket', function() {
+      it('should call addTicket successfully', function(done) {
+        //uncomment below and update the code to test addTicket
+        //instance.addTicket(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
         done();
       });
     });
-    describe('getUserTickets', function() {
-      it('should call getUserTickets successfully', function(done) {
-        //uncomment below and update the code to test getUserTickets
-        //instance.getUserTickets(function(error) {
+    describe('searchTickets', function() {
+      it('should call searchTickets successfully', function(done) {
+        //uncomment below and update the code to test searchTickets
+        //instance.searchTickets(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
         done();
       });
     });
-    describe('getUsers', function() {
-      it('should call getUsers successfully', function(done) {
-        //uncomment below and update the code to test getUsers
-        //instance.getUsers(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('getUsersUserID', function() {
-      it('should call getUsersUserID successfully', function(done) {
-        //uncomment below and update the code to test getUsersUserID
-        //instance.getUsersUserID(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('updateUser', function() {
-      it('should call updateUser successfully', function(done) {
-        //uncomment below and update the code to test updateUser
-        //instance.updateUser(function(error) {
+    describe('updateTicket', function() {
+      it('should call updateTicket successfully', function(done) {
+        //uncomment below and update the code to test updateTicket
+        //instance.updateTicket(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});

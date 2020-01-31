@@ -1,0 +1,853 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "BreakDownAPI",
+    "version": "1.0.0",
+    "description": "Backend API for the BreakDown app service.",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "contact": {
+      "email": "you@your-company.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://virtserver.swaggerhub.com/Capstone-group-proje/BrokeDown/1.0.0"
+    }
+  ],
+  "paths": {
+    "/tickets": {
+      "get": {
+        "summary": "Fetch service tickets",
+        "tags": [
+          "ServiceTicketOps"
+        ],
+        "responses": {
+          "200": {
+            "description": "search results matching criteria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "required": [
+                      "customer",
+                      "serviceLocation",
+                      "serviceType"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "ticketID": {
+                        "type": "string",
+                        "format": "uuid"
+                      },
+                      "dateCreated": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2016-08-29T09:12:33.001Z"
+                      },
+                      "customer": {
+                        "required": [
+                          "id",
+                          "name"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "role": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "driver": {
+                        "required": [
+                          "id",
+                          "name"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "role": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "serviceLocation": {
+                        "type": "string"
+                      },
+                      "serviceDistance": {
+                        "type": "string"
+                      },
+                      "comments": {
+                        "type": "string"
+                      },
+                      "serviceType": {
+                        "type": "string"
+                      },
+                      "custVehicle": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "bad input parameter",
+            "content": {}
+          }
+        },
+        "operationId": "search Tickets",
+        "parameters": [
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "number of records to skip for pagination",
+            "schema": {
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "maximum number of records to return",
+            "schema": {
+              "maximum": 50,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "description": "By passing in the appropriate options, you can search for available tickets in the system"
+      },
+      "post": {
+        "tags": [
+          "ServiceTicketOps"
+        ],
+        "summary": "adds an service Ticket",
+        "description": "Adds an Ticket to the system",
+        "operationId": "addTicket",
+        "requestBody": {
+          "description": "Ticket item to add",
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "customer",
+                  "serviceLocation",
+                  "serviceType"
+                ],
+                "type": "object",
+                "properties": {
+                  "ticketID": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "dateCreated": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2016-08-29T09:12:33.001Z"
+                  },
+                  "customer": {
+                    "required": [
+                      "id",
+                      "name"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "format": "uuid"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "role": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "driver": {
+                    "required": [
+                      "id",
+                      "name"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "format": "uuid"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "role": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "serviceLocation": {
+                    "type": "string"
+                  },
+                  "serviceDistance": {
+                    "type": "string"
+                  },
+                  "comments": {
+                    "type": "string"
+                  },
+                  "serviceType": {
+                    "type": "string"
+                  },
+                  "custVehicle": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "item created",
+            "content": {}
+          },
+          "400": {
+            "description": "invalid input, object invalid",
+            "content": {}
+          },
+          "409": {
+            "description": "an existing item already exists",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "ServiceTicket"
+      },
+      "put": {
+        "tags": [
+          "ServiceTicketOps"
+        ],
+        "summary": "adds an service Ticket",
+        "description": "Updates an Ticket to the system",
+        "operationId": "updateTicket",
+        "requestBody": {
+          "description": "Ticket item to update",
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "customer",
+                  "serviceLocation",
+                  "serviceType"
+                ],
+                "type": "object",
+                "properties": {
+                  "ticketID": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "dateCreated": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2016-08-29T09:12:33.001Z"
+                  },
+                  "customer": {
+                    "required": [
+                      "id",
+                      "name"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "format": "uuid"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "role": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "driver": {
+                    "required": [
+                      "id",
+                      "name"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "format": "uuid"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "role": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "serviceLocation": {
+                    "type": "string"
+                  },
+                  "serviceDistance": {
+                    "type": "string"
+                  },
+                  "comments": {
+                    "type": "string"
+                  },
+                  "serviceType": {
+                    "type": "string"
+                  },
+                  "custVehicle": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "item updated",
+            "content": {}
+          },
+          "400": {
+            "description": "invalid input, object invalid",
+            "content": {}
+          },
+          "409": {
+            "description": "an existing item already exists",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "ServiceTicket"
+      },
+      "parameters": []
+    },
+    "/users": {
+      "parameters": [],
+      "get": {
+        "summary": "Query Users",
+        "tags": [
+          "UserOps"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "required": [
+                      "id",
+                      "name"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "format": "uuid"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "role": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "operationId": "getUsers",
+        "description": ""
+      },
+      "post": {
+        "summary": "",
+        "operationId": "createUser",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "description": "Create a new user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "id",
+                  "name"
+                ],
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "role": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{userID}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "userID",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Get specific user",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": [
+                    "id",
+                    "name"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "role": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-users-userID"
+      },
+      "put": {
+        "summary": "",
+        "operationId": "updateUser",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "description": "Update part of a user's records",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "id",
+                  "name"
+                ],
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "role": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{userID}/tickets": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "userID",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Get tickets for user",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "required": [
+                      "customer",
+                      "serviceLocation",
+                      "serviceType"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "ticketID": {
+                        "type": "string",
+                        "format": "uuid"
+                      },
+                      "dateCreated": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2016-08-29T09:12:33.001Z"
+                      },
+                      "customer": {
+                        "required": [
+                          "id",
+                          "name"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "role": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "driver": {
+                        "required": [
+                          "id",
+                          "name"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "role": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "serviceLocation": {
+                        "type": "string"
+                      },
+                      "serviceDistance": {
+                        "type": "string"
+                      },
+                      "comments": {
+                        "type": "string"
+                      },
+                      "serviceType": {
+                        "type": "string"
+                      },
+                      "custVehicle": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "getUserTickets",
+        "description": "Return tickets related to a specific user."
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AppUser": {
+        "required": [
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          }
+        }
+      },
+      "ServiceTicket": {
+        "required": [
+          "customer",
+          "serviceLocation",
+          "serviceType"
+        ],
+        "type": "object",
+        "properties": {
+          "ticketID": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "dateCreated": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2016-08-29T09:12:33.001Z"
+          },
+          "customer": {
+            "required": [
+              "id",
+              "name"
+            ],
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "name": {
+                "type": "string"
+              },
+              "role": {
+                "type": "string"
+              }
+            }
+          },
+          "driver": {
+            "required": [
+              "id",
+              "name"
+            ],
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "name": {
+                "type": "string"
+              },
+              "role": {
+                "type": "string"
+              }
+            }
+          },
+          "status": {
+            "type": "string"
+          },
+          "serviceLocation": {
+            "type": "string"
+          },
+          "serviceDistance": {
+            "type": "string"
+          },
+          "comments": {
+            "type": "string"
+          },
+          "serviceType": {
+            "type": "string"
+          },
+          "custVehicle": {
+            "type": "string"
+          }
+        }
+      },
+      "TicketArray": {
+        "title": "TicketArray",
+        "type": "array",
+        "items": {
+          "required": [
+            "customer",
+            "serviceLocation",
+            "serviceType"
+          ],
+          "type": "object",
+          "properties": {
+            "ticketID": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "dateCreated": {
+              "type": "string",
+              "format": "date-time",
+              "example": "2016-08-29T09:12:33.001Z"
+            },
+            "customer": {
+              "required": [
+                "id",
+                "name"
+              ],
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "role": {
+                  "type": "string"
+                }
+              }
+            },
+            "driver": {
+              "required": [
+                "id",
+                "name"
+              ],
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "role": {
+                  "type": "string"
+                }
+              }
+            },
+            "status": {
+              "type": "string"
+            },
+            "serviceLocation": {
+              "type": "string"
+            },
+            "serviceDistance": {
+              "type": "string"
+            },
+            "comments": {
+              "type": "string"
+            },
+            "serviceType": {
+              "type": "string"
+            },
+            "custVehicle": {
+              "type": "string"
+            }
+          }
+        },
+        "description": ""
+      },
+      "Vehicle": {
+        "title": "Vehicle",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "API Key - 1": {
+        "type": "oauth2",
+        "flows": {
+          "password": {
+            "scopes": {}
+          }
+        },
+        "description": ""
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "ServiceTicketOps",
+      "description": "Calls requesting/submitting service tickets"
+    }
+  ]
+}

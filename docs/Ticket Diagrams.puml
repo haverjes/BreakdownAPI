@@ -1,0 +1,37 @@
+@startuml Get /Users/{$id}/Tickets
+title GetUserTickets()
+
+actor Client
+
+Client -> API: Query Tickets{userID}
+API -> TicketMan : Pass query params 
+database MongoDB
+TicketMan -> MongoDB: Send Query
+TicketMan <-- MongoDB: Return results
+TicketMan -> TicketMan : Process results
+note left of TicketMan
+	Ticket[] 
+end note
+API <-- TicketMan : 
+Client <-- API: GET Response
+@enduml
+
+
+
+@startuml CreateTicket
+title CreateTicket()
+
+actor Client
+note right of Client
+	TicketStub 
+end note
+Client -> API: 
+API -> TicketMan : Pass stub
+TicketMan -> TicketMan : Build ticket \n from stub
+database MongoDB
+TicketMan -> MongoDB: Insert Ticket
+TicketMan <-- MongoDB: Return results
+
+API <-- TicketMan : 
+Client <-- API: POST Response
+@enduml

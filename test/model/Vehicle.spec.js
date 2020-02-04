@@ -28,7 +28,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new BreakDownApi.ServiceTicketOpsApi();
+    instance = new BreakDownApi.Vehicle();
   });
 
   var getProperty = function(object, getter, property) {
@@ -47,37 +47,31 @@
       object[property] = value;
   }
 
-  describe('ServiceTicketOpsApi', function() {
-    describe('addTicket', function() {
-      it('should call addTicket successfully', function(done) {
-        //uncomment below and update the code to test addTicket
-        //instance.addTicket(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
+  describe('Vehicle', function() {
+    it('should create an instance of Vehicle', function() {
+      // uncomment below and update the code to test Vehicle
+      //var instane = new BreakDownApi.Vehicle();
+      //expect(instance).to.be.a(BreakDownApi.Vehicle);
     });
-    describe('searchTickets', function() {
-      it('should call searchTickets successfully', function(done) {
-        //uncomment below and update the code to test searchTickets
-        //instance.searchTickets(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
+
+    it('should have the property id (base name: "id")', function() {
+      // uncomment below and update the code to test the property id
+      //var instane = new BreakDownApi.Vehicle();
+      //expect(instance).to.be();
     });
-    describe('updateTicket', function() {
-      it('should call updateTicket successfully', function(done) {
-        //uncomment below and update the code to test updateTicket
-        //instance.updateTicket(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
+
+    it('should have the property name (base name: "name")', function() {
+      // uncomment below and update the code to test the property name
+      //var instane = new BreakDownApi.Vehicle();
+      //expect(instance).to.be();
     });
+
+    it('should have the property type (base name: "type")', function() {
+      // uncomment below and update the code to test the property type
+      //var instane = new BreakDownApi.Vehicle();
+      //expect(instance).to.be();
+    });
+
   });
 
 }));

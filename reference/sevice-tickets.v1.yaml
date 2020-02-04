@@ -9,7 +9,7 @@ info:
   contact:
     email: you@your-company.com
 servers:
-  - url: 'https://virtserver.swaggerhub.com/Capstone-group-proje/BrokeDown/1.0.0'
+  - url: 'https://ourwebapp20200123033131.azurewebsites.net/'
 paths:
   /tickets:
     get:
@@ -24,57 +24,7 @@ paths:
               schema:
                 type: array
                 items:
-                  required:
-                    - customer
-                    - serviceLocation
-                    - serviceType
-                  type: object
-                  properties:
-                    ticketID:
-                      type: string
-                      format: uuid
-                    dateCreated:
-                      type: string
-                      format: date-time
-                      example: '2016-08-29T09:12:33.001Z'
-                    customer:
-                      required:
-                        - id
-                        - name
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                          format: uuid
-                        name:
-                          type: string
-                        role:
-                          type: string
-                    driver:
-                      required:
-                        - id
-                        - name
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                          format: uuid
-                        name:
-                          type: string
-                        role:
-                          type: string
-                    status:
-                      type: string
-                    serviceLocation:
-                      type: string
-                    serviceDistance:
-                      type: string
-                    comments:
-                      type: string
-                    serviceType:
-                      type: string
-                    custVehicle:
-                      type: string
+                  $ref: '#/components/schemas/ServiceTicket'
         '400':
           description: bad input parameter
           content: {}
@@ -107,57 +57,7 @@ paths:
         content:
           application/json:
             schema:
-              required:
-                - customer
-                - serviceLocation
-                - serviceType
-              type: object
-              properties:
-                ticketID:
-                  type: string
-                  format: uuid
-                dateCreated:
-                  type: string
-                  format: date-time
-                  example: '2016-08-29T09:12:33.001Z'
-                customer:
-                  required:
-                    - id
-                    - name
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                      format: uuid
-                    name:
-                      type: string
-                    role:
-                      type: string
-                driver:
-                  required:
-                    - id
-                    - name
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                      format: uuid
-                    name:
-                      type: string
-                    role:
-                      type: string
-                status:
-                  type: string
-                serviceLocation:
-                  type: string
-                serviceDistance:
-                  type: string
-                comments:
-                  type: string
-                serviceType:
-                  type: string
-                custVehicle:
-                  type: string
+              $ref: '#/components/schemas/ServiceTicket'
         required: false
       responses:
         '201':
@@ -181,57 +81,7 @@ paths:
         content:
           application/json:
             schema:
-              required:
-                - customer
-                - serviceLocation
-                - serviceType
-              type: object
-              properties:
-                ticketID:
-                  type: string
-                  format: uuid
-                dateCreated:
-                  type: string
-                  format: date-time
-                  example: '2016-08-29T09:12:33.001Z'
-                customer:
-                  required:
-                    - id
-                    - name
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                      format: uuid
-                    name:
-                      type: string
-                    role:
-                      type: string
-                driver:
-                  required:
-                    - id
-                    - name
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                      format: uuid
-                    name:
-                      type: string
-                    role:
-                      type: string
-                status:
-                  type: string
-                serviceLocation:
-                  type: string
-                serviceDistance:
-                  type: string
-                comments:
-                  type: string
-                serviceType:
-                  type: string
-                custVehicle:
-                  type: string
+              $ref: '#/components/schemas/ServiceTicket'
         required: false
       responses:
         '201':
@@ -260,18 +110,7 @@ paths:
               schema:
                 type: array
                 items:
-                  required:
-                    - id
-                    - name
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                      format: uuid
-                    name:
-                      type: string
-                    role:
-                      type: string
+                  $ref: '#/components/schemas/AppUser'
         '400':
           description: Bad Request
         '401':
@@ -280,6 +119,22 @@ paths:
           description: Forbidden
       operationId: getUsers
       description: ''
+      parameters:
+        - name: skip
+          in: query
+          description: number of records to skip for pagination
+          schema:
+            minimum: 0
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: maximum number of records to return
+          schema:
+            maximum: 50
+            minimum: 0
+            type: integer
+            format: int32
     post:
       summary: ''
       operationId: createUser
@@ -299,18 +154,8 @@ paths:
         content:
           application/json:
             schema:
-              required:
-                - id
-                - name
-              type: object
-              properties:
-                id:
-                  type: string
-                  format: uuid
-                name:
-                  type: string
-                role:
-                  type: string
+              $ref: '#/components/schemas/AppUser'
+        description: ''
   '/users/{userID}':
     parameters:
       - schema:
@@ -327,18 +172,7 @@ paths:
           content:
             application/json:
               schema:
-                required:
-                  - id
-                  - name
-                type: object
-                properties:
-                  id:
-                    type: string
-                    format: uuid
-                  name:
-                    type: string
-                  role:
-                    type: string
+                $ref: '#/components/schemas/AppUser'
       operationId: get-users-userID
     put:
       summary: ''
@@ -351,18 +185,8 @@ paths:
         content:
           application/json:
             schema:
-              required:
-                - id
-                - name
-              type: object
-              properties:
-                id:
-                  type: string
-                  format: uuid
-                name:
-                  type: string
-                role:
-                  type: string
+              $ref: '#/components/schemas/AppUser'
+        description: ''
   '/users/{userID}/tickets':
     parameters:
       - schema:
@@ -381,57 +205,7 @@ paths:
               schema:
                 type: array
                 items:
-                  required:
-                    - customer
-                    - serviceLocation
-                    - serviceType
-                  type: object
-                  properties:
-                    ticketID:
-                      type: string
-                      format: uuid
-                    dateCreated:
-                      type: string
-                      format: date-time
-                      example: '2016-08-29T09:12:33.001Z'
-                    customer:
-                      required:
-                        - id
-                        - name
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                          format: uuid
-                        name:
-                          type: string
-                        role:
-                          type: string
-                    driver:
-                      required:
-                        - id
-                        - name
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                          format: uuid
-                        name:
-                          type: string
-                        role:
-                          type: string
-                    status:
-                      type: string
-                    serviceLocation:
-                      type: string
-                    serviceDistance:
-                      type: string
-                    comments:
-                      type: string
-                    serviceType:
-                      type: string
-                    custVehicle:
-                      type: string
+                  $ref: '#/components/schemas/ServiceTicket'
       operationId: getUserTickets
       description: Return tickets related to a specific user.
 components:
@@ -450,10 +224,6 @@ components:
         role:
           type: string
     ServiceTicket:
-      required:
-        - customer
-        - serviceLocation
-        - serviceType
       type: object
       properties:
         ticketID:
@@ -464,31 +234,7 @@ components:
           format: date-time
           example: '2016-08-29T09:12:33.001Z'
         customer:
-          required:
-            - id
-            - name
-          type: object
-          properties:
-            id:
-              type: string
-              format: uuid
-            name:
-              type: string
-            role:
-              type: string
-        driver:
-          required:
-            - id
-            - name
-          type: object
-          properties:
-            id:
-              type: string
-              format: uuid
-            name:
-              type: string
-            role:
-              type: string
+          $ref: '#/components/schemas/AppUser'
         status:
           type: string
         serviceLocation:
@@ -501,69 +247,29 @@ components:
           type: string
         custVehicle:
           type: string
+        driver:
+          $ref: '#/components/schemas/AppUser'
+      required:
+        - customer
+        - serviceLocation
+        - serviceType
     TicketArray:
       title: TicketArray
       type: array
+      description: ''
       items:
-        required:
-          - customer
-          - serviceLocation
-          - serviceType
-        type: object
-        properties:
-          ticketID:
-            type: string
-            format: uuid
-          dateCreated:
-            type: string
-            format: date-time
-            example: '2016-08-29T09:12:33.001Z'
-          customer:
-            required:
-              - id
-              - name
-            type: object
-            properties:
-              id:
-                type: string
-                format: uuid
-              name:
-                type: string
-              role:
-                type: string
-          driver:
-            required:
-              - id
-              - name
-            type: object
-            properties:
-              id:
-                type: string
-                format: uuid
-              name:
-                type: string
-              role:
-                type: string
-          status:
-            type: string
-          serviceLocation:
-            type: string
-          serviceDistance:
-            type: string
-          comments:
-            type: string
-          serviceType:
-            type: string
-          custVehicle:
-            type: string
-      description: ''
-  securitySchemes:
-    API Key - 1:
-      type: oauth2
-      flows:
-        password:
-          scopes: {}
-      description: ''
+        $ref: '#/components/schemas/ServiceTicket'
+    Vehicle:
+      title: Vehicle
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+  
 tags:
   - name: ServiceTicketOps
     description: Calls requesting/submitting service tickets

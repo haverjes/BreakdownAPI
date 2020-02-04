@@ -14,20 +14,18 @@
 import ApiClient from '../ApiClient';
 
 /**
- * The AppUser model module.
- * @module model/AppUser
+ * The Vehicle model module.
+ * @module model/Vehicle
  * @version 1.0.0
  */
-class AppUser {
+class Vehicle {
     /**
-     * Constructs a new <code>AppUser</code>.
-     * @alias module:model/AppUser
-     * @param id {String} 
-     * @param name {String} 
+     * Constructs a new <code>Vehicle</code>.
+     * @alias module:model/Vehicle
      */
-    constructor(id, name) { 
+    constructor() { 
         
-        AppUser.initialize(this, id, name);
+        Vehicle.initialize(this);
     }
 
     /**
@@ -35,21 +33,19 @@ class AppUser {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, id, name) { 
-        obj['id'] = id;
-        obj['name'] = name;
+    static initialize(obj) { 
     }
 
     /**
-     * Constructs a <code>AppUser</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>Vehicle</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/AppUser} obj Optional instance to populate.
-     * @return {module:model/AppUser} The populated <code>AppUser</code> instance.
+     * @param {module:model/Vehicle} obj Optional instance to populate.
+     * @return {module:model/Vehicle} The populated <code>Vehicle</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new AppUser();
+            obj = obj || new Vehicle();
 
             if (data.hasOwnProperty('id')) {
                 obj['id'] = ApiClient.convertToType(data['id'], 'String');
@@ -57,8 +53,8 @@ class AppUser {
             if (data.hasOwnProperty('name')) {
                 obj['name'] = ApiClient.convertToType(data['name'], 'String');
             }
-            if (data.hasOwnProperty('role')) {
-                obj['role'] = ApiClient.convertToType(data['role'], 'String');
+            if (data.hasOwnProperty('type')) {
+                obj['type'] = ApiClient.convertToType(data['type'], 'String');
             }
         }
         return obj;
@@ -70,22 +66,22 @@ class AppUser {
 /**
  * @member {String} id
  */
-AppUser.prototype['id'] = undefined;
+Vehicle.prototype['id'] = undefined;
 
 /**
  * @member {String} name
  */
-AppUser.prototype['name'] = undefined;
+Vehicle.prototype['name'] = undefined;
 
 /**
- * @member {String} role
+ * @member {String} type
  */
-AppUser.prototype['role'] = undefined;
+Vehicle.prototype['type'] = undefined;
 
 
 
 
 
 
-export default AppUser;
+export default Vehicle;
 

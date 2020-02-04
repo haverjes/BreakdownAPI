@@ -28,7 +28,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new BreakDownApi.ServiceTicketOpsApi();
+    instance = new BreakDownApi.UserOpsApi();
   });
 
   var getProperty = function(object, getter, property) {
@@ -47,31 +47,11 @@
       object[property] = value;
   }
 
-  describe('ServiceTicketOpsApi', function() {
-    describe('addTicket', function() {
-      it('should call addTicket successfully', function(done) {
-        //uncomment below and update the code to test addTicket
-        //instance.addTicket(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('searchTickets', function() {
-      it('should call searchTickets successfully', function(done) {
-        //uncomment below and update the code to test searchTickets
-        //instance.searchTickets(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('updateTicket', function() {
-      it('should call updateTicket successfully', function(done) {
-        //uncomment below and update the code to test updateTicket
-        //instance.updateTicket(function(error) {
+  describe('UserOpsApi', function() {
+    describe('getUsers', function() {
+      it('should call getUsers successfully', function(done) {
+        //uncomment below and update the code to test getUsers
+        //instance.getUsers(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
